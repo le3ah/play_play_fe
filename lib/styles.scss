@@ -1,9 +1,28 @@
 body {
-  background-color: #68EDC6;
+  background-color: #DFFDFF;
 }
+h1 {
+  color: #90BEDE;
+}
+h2 {
+  color: #68EDC6;
+}
+.main {
+  display: flex;
+  justify-content: space-around;
+}
+
 #songList {
   text-align: left;
   border: 2px solid #90BEDE;
+  width: 30%;
+  padding-left: 10px;
+}
+#favoritesList {
+  text-align: left;
+  border: 2px solid #90BEDE;
+  width: 30%;
+  padding-left: 10px;
 }
 .searching {
   text-align: center;
