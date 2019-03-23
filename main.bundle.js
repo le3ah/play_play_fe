@@ -51,6 +51,7 @@
 	$(document).ready(function () {
 	  $("#artistSearchBtn").click(function () {
 	    event.preventDefault();
+	    event.stopPropagation();
 	    var artistName = $("#artistName").val();
 	    $.ajax({
 	      url: "https://api.musixmatch.com/ws/1.1/track.search?q_artist=" + artistName + "&page_size=30&apikey=f79ce08e6df5e9e6286edb9802eb6583",
@@ -67,14 +68,24 @@
 	        var _loop = function _loop() {
 	          $("#songList").show();
 	          $("#songList").append("<p id=\"songName" + i + "\">" + trackList[i].track.track_name + " <button class=\"btn\" id=\"favoriteBtn" + i + "\"><i class=\"fa fa-star status\"></i></button></p>");
-	          var songId = trackList[i].track.track_name;
 	          var songTitle = trackList[i].track.track_name;
 	          var songArtist = trackList[i].track.artist_name;
-	          var songGenre = trackList[i].track.track_name;
-	          var songRating = trackList[i].track.track_name;
+	          var songGenre = trackList[i].track.primary_genres.music_genre_list[0] ? trackList[i].track.primary_genres.music_genre_list[0].music_genre.music_genre_name : "Esoteric";
+	          var songRating = trackList[i].track.track_rating;
 	          $("#favoriteBtn" + i).click(function () {
 	            event.preventDefault();
 	            window.alert("You have favorited " + songTitle + " by " + songArtist + "!");
+	            $.ajax({
+	              url: "https://protected-fortress-76604.herokuapp.com/api/v1/favorites",
+	              type: 'POST',
+	              data: JSON.stringify({
+	                "name": songTitle,
+	                "artist_name": songArtist,
+	                "genre": songGenre,
+	                "rating": songRating
+	              }),
+	              contentType: 'application/json'
+	            });
 	          });
 	        };
 
