@@ -1,6 +1,28 @@
-.btn {
-  color: blue;
+body {
+  background-color: #68EDC6;
+}
+#songList {
+  text-align: center;
+  border: 2px solid #90BEDE;
+}
+.searching {
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+}
+#artistName {
+  padding: 10px;
+  border-radius: 15px;
+}
+#artistSearchBtn {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #90BEDE;
+}
+#artistSearchBtn:hover {
+  background-color: #E5E1EE;
 }
 .btn:focus {
-  color: pink;
+  background-color: #90BEDE;
+  color: #E5E1EE;
 }
