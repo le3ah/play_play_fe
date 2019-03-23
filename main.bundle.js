@@ -53,7 +53,7 @@
 	    event.preventDefault();
 	    var artistName = $("#artistName").val();
 	    $.ajax({
-	      url: "https://api.musixmatch.com/ws/1.1/track.search?q_artist=" + artistName + "&apikey=f79ce08e6df5e9e6286edb9802eb6583",
+	      url: "https://api.musixmatch.com/ws/1.1/track.search?q_artist=" + artistName + "&page_size=30&apikey=f79ce08e6df5e9e6286edb9802eb6583",
 	      type: 'GET',
 	      data: {
 	        format: 'jsonp',
@@ -63,9 +63,23 @@
 	      jsonpCallback: 'jsonp_callback',
 	      success: function success(data, status) {
 	        var trackList = data["message"]["body"]["track_list"];
-	        for (var i = 0; i < 10; i++) {
+
+	        var _loop = function _loop() {
 	          $("#songList").show();
-	          $("#songName" + i).html(trackList[i].track.track_name);
+	          $("#songList").append("<p id=\"songName" + i + "\">" + trackList[i].track.track_name + " <button class=\"btn\" id=\"favoriteBtn" + i + "\"><i class=\"fa fa-star status\"></i></button></p>");
+	          var songId = trackList[i].track.track_name;
+	          var songTitle = trackList[i].track.track_name;
+	          var songArtist = trackList[i].track.artist_name;
+	          var songGenre = trackList[i].track.track_name;
+	          var songRating = trackList[i].track.track_name;
+	          $("#favoriteBtn" + i).click(function () {
+	            event.preventDefault();
+	            window.alert("You have favorited " + songTitle + " by " + songArtist + "!");
+	          });
+	        };
+
+	        for (var i = 0; i < 29; i++) {
+	          _loop();
 	        }
 	      }
 	    });
@@ -107,7 +121,7 @@
 
 
 	// module
-	exports.push([module.id, "\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #68EDC6; }\n\n#songList {\n  text-align: left;\n  border: 2px solid #90BEDE; }\n\n.searching {\n  text-align: center;\n  margin: 10px;\n  padding: 10px; }\n\n#artistName {\n  padding: 10px;\n  border-radius: 15px; }\n\n#artistSearchBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #90BEDE; }\n\n#artistSearchBtn:hover {\n  background-color: #E5E1EE; }\n\n.btn:focus {\n  background-color: #90BEDE;\n  color: #E5E1EE; }\n", ""]);
 
 	// exports
 
