@@ -3,29 +3,20 @@
 <head>
   <meta charset="utf-8">
   <title>Ill Vibe</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-      <!--  the a tag below can link you to another HTML page  -->
-      <!--  if you click the button in the browser right now, you'll get an error because that is not a real file path -->
     <script
     src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
   </script>
   <script src="main.bundle.js"></script>
   <h1>Search for songs by artist name, select your favorites, and build some rockin' playlists here!</h1>
-  <input type="text" placeholder="Enter Artist Name Here" id="artistName">
-  <input type="submit" value="Search" id="artistSearchBtn">
+  <form class="searching">
+    <input type="text" placeholder="Enter Artist Name Here" id="artistName">
+    <input type="submit" value="Search" id="artistSearchBtn">
+  </form>
 
   <div id="songList">
-    <p id="songName0"></p>
-    <p id="songName1"></p>
-    <p id="songName2"></p>
-    <p id="songName3"></p>
-    <p id="songName4"></p>
-    <p id="songName5"></p>
-    <p id="songName6"></p>
-    <p id="songName7"></p>
-    <p id="songName8"></p>
-    <p id="songName9"></p>
   </div>
 </body>
 </html>
