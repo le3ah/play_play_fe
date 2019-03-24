@@ -88,6 +88,7 @@
 	              }),
 	              contentType: 'application/json'
 	            });
+	            $('#favoritesList').append('<p id="songName' + i + '">' + songTitle + '<br>' + songArtist + '<br>' + songGenre + '<br>' + songRating + '</p>');
 	          });
 	        };
 
