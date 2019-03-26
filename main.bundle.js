@@ -50,6 +50,7 @@
 
 	$(document).ready(function () {
 	  displayFavorites();
+	  displayPlaylists();
 	  $("#artistSearchBtn").on('click', function () {
 	    event.preventDefault();
 	    var artistName = $("#artistName").val();
@@ -65,10 +66,11 @@
 	      success: function success(data, status) {
 	        var trackList = data["message"]["body"]["track_list"];
 	        $('#songList').text("");
+	        $('#songList').append('<h2>Rockin\' Results</h2>');
 
 	        var _loop = function _loop() {
 	          $("#songList").show();
-	          $('#songList').append('<p id="songName' + i + '">' + trackList[i].track.track_name + ' <button class="btn" id="favoriteBtn' + i + '"><i class="fa fa-star status"></i></button></p>');
+	          $('#songList').append('<p id="songName' + i + '"><button class="btn" id="favoriteBtn' + i + '"><i class="fa fa-star status" style=\'font-size:25px\'></i></button> ' + trackList[i].track.track_name + '</p>');
 	          var songTitle = trackList[i].track.track_name;
 	          var songArtist = trackList[i].track.artist_name;
 	          var songGenre = trackList[i].track.primary_genres.music_genre_list[0] ? trackList[i].track.primary_genres.music_genre_list[0].music_genre.music_genre_name : "Esoteric";
@@ -88,7 +90,7 @@
 	              }),
 	              contentType: 'application/json'
 	            });
-	            $('#favoritesList').append('<p id="songName' + i + '">' + songTitle + '<br>' + songArtist + '<br>' + songGenre + '<br>' + songRating + '</p>');
+	            $('#favoritesList').append('<p id="songName' + i + '"><strong>Name: </strong>' + songTitle + '<br><strong>Artist: </strong>' + songArtist + '<br><strong>Genre: </strong>' + songGenre + '<br><strong>Rating: </strong>' + songRating + '</p>');
 	          });
 	        };
 
@@ -103,10 +105,24 @@
 	  $.get('https://protected-fortress-76604.herokuapp.com/api/v1/favorites', function (data, status) {
 	    var favorites = data;
 	    $('#favoritesList').text("");
+	    $('#favoritesList').append('<h2>Favorite Rockin\' Songs</h2>');
 	    for (var i = 0; i < 29; i++) {
 	      $("#favoritesList").show();
 	      if (data[i]) {
-	        $('#favoritesList').append('<p id="songName' + i + '">' + data[i].name + '<br>' + data[i].artist_name + '<br>' + data[i].genre + '<br>' + data[i].rating + '</p>');
+	        $('#favoritesList').append('<p id="songName' + i + '"><strong>Name: </strong>' + data[i].name + '<br><strong>Artist: </strong>' + data[i].artist_name + '<br><strong>Genre: </strong>' + data[i].genre + '<br><strong>Rating: </strong>' + data[i].rating + '</p>');
+	      }
+	    }
+	  });
+	};
+	var displayPlaylists = function displayPlaylists() {
+	  $.get('https://protected-fortress-76604.herokuapp.com/api/v1/playlists', function (data, status) {
+	    var playlists = data;
+	    $('#playlistsList').text("");
+	    $('#playlistsList').append('<h2>My Rockin\' Playlists</h2>');
+	    for (var i = 0; i < 29; i++) {
+	      $("#playlistsList").show();
+	      if (data[i]) {
+	        $('#playlistsList').append('<p id="playlistName' + i + '"><button class="btn" id="playlistBtn' + i + '"><i class="fas fa-guitar status" style=\'font-size:30px\'></i></button> ' + data[i].playlist_name + '</p>');
 	      }
 	    }
 	  });
@@ -147,7 +163,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #DFFDFF; }\n\nh1 {\n  color: #90BEDE; }\n\nh2 {\n  color: #68EDC6; }\n\n.main {\n  display: flex;\n  justify-content: space-around; }\n\n#songList {\n  text-align: left;\n  border: 2px solid #90BEDE;\n  width: 30%;\n  padding-left: 10px; }\n\n#favoritesList {\n  text-align: left;\n  border: 2px solid #90BEDE;\n  width: 30%;\n  padding-left: 10px; }\n\n.searching {\n  text-align: center;\n  margin: 10px;\n  padding: 10px; }\n\n#artistName {\n  padding: 10px;\n  border-radius: 15px; }\n\n#artistSearchBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #90BEDE; }\n\n#artistSearchBtn:hover {\n  background-color: #E5E1EE; }\n\n.btn:focus {\n  background-color: #90BEDE;\n  color: #E5E1EE; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #DFFDFF; }\n\nh1 {\n  color: #90BEDE; }\n\nh2 {\n  color: #68EDC6; }\n\n.main {\n  display: flex;\n  justify-content: space-around; }\n\n#songList {\n  text-align: left;\n  border: 2px solid #90BEDE;\n  width: 30%;\n  padding-left: 20px;\n  font-size: 25px; }\n\n#favoritesList {\n  text-align: left;\n  border: 2px solid #90BEDE;\n  width: 30%;\n  padding-left: 20px;\n  font-size: 25px; }\n\n#playlistsList {\n  text-align: left;\n  border: 2px solid #90BEDE;\n  width: 30%;\n  padding-left: 20px;\n  font-size: 25px; }\n\n.searching {\n  text-align: center;\n  margin: 10px;\n  padding: 10px; }\n\n#artistName {\n  padding: 10px;\n  border-radius: 15px;\n  font-size: 20px; }\n\n#artistSearchBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #90BEDE;\n  font-size: 20px; }\n\n#artistSearchBtn:hover {\n  background-color: #E5E1EE; }\n\n.btn {\n  padding: 10px;\n  border-radius: 20px;\n  font-size: 20px; }\n\n.btn:focus {\n  background-color: #90BEDE;\n  color: #E5E1EE; }\n", ""]);
 
 	// exports
 
