@@ -44,17 +44,17 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	__webpack_require__(1);
 
 	$(document).ready(function () {
-	  $("#artistSearchBtn").click(function () {
+	  displayFavorites();
+	  $("#artistSearchBtn").on('click', function () {
 	    event.preventDefault();
-	    event.stopPropagation();
 	    var artistName = $("#artistName").val();
 	    $.ajax({
-	      url: "https://api.musixmatch.com/ws/1.1/track.search?q_artist=" + artistName + "&page_size=30&apikey=f79ce08e6df5e9e6286edb9802eb6583",
+	      url: 'https://api.musixmatch.com/ws/1.1/track.search?q_artist=' + artistName + '&page_size=30&apikey=f79ce08e6df5e9e6286edb9802eb6583',
 	      type: 'GET',
 	      data: {
 	        format: 'jsonp',
@@ -64,17 +64,19 @@
 	      jsonpCallback: 'jsonp_callback',
 	      success: function success(data, status) {
 	        var trackList = data["message"]["body"]["track_list"];
+	        $('#songList').text("");
 
 	        var _loop = function _loop() {
 	          $("#songList").show();
-	          $("#songList").append("<p id=\"songName" + i + "\">" + trackList[i].track.track_name + " <button class=\"btn\" id=\"favoriteBtn" + i + "\"><i class=\"fa fa-star status\"></i></button></p>");
+	          $('#songList').append('<p id="songName' + i + '">' + trackList[i].track.track_name + ' <button class="btn" id="favoriteBtn' + i + '"><i class="fa fa-star status"></i></button></p>');
 	          var songTitle = trackList[i].track.track_name;
 	          var songArtist = trackList[i].track.artist_name;
 	          var songGenre = trackList[i].track.primary_genres.music_genre_list[0] ? trackList[i].track.primary_genres.music_genre_list[0].music_genre.music_genre_name : "Esoteric";
 	          var songRating = trackList[i].track.track_rating;
-	          $("#favoriteBtn" + i).click(function () {
+	          $('#favoriteBtn' + i).click(function () {
 	            event.preventDefault();
-	            window.alert("You have favorited " + songTitle + " by " + songArtist + "!");
+
+	            window.alert('You have favorited ' + songTitle + ' by ' + songArtist + '!');
 	            $.ajax({
 	              url: "https://protected-fortress-76604.herokuapp.com/api/v1/favorites",
 	              type: 'POST',
@@ -86,6 +88,7 @@
 	              }),
 	              contentType: 'application/json'
 	            });
+	            $('#favoritesList').append('<p id="songName' + i + '">' + songTitle + '<br>' + songArtist + '<br>' + songGenre + '<br>' + songRating + '</p>');
 	          });
 	        };
 
@@ -96,6 +99,18 @@
 	    });
 	  });
 	});
+	var displayFavorites = function displayFavorites() {
+	  $.get('https://protected-fortress-76604.herokuapp.com/api/v1/favorites', function (data, status) {
+	    var favorites = data;
+	    $('#favoritesList').text("");
+	    for (var i = 0; i < 29; i++) {
+	      $("#favoritesList").show();
+	      if (data[i]) {
+	        $('#favoritesList').append('<p id="songName' + i + '">' + data[i].name + '<br>' + data[i].artist_name + '<br>' + data[i].genre + '<br>' + data[i].rating + '</p>');
+	      }
+	    }
+	  });
+	};
 
 /***/ }),
 /* 1 */
@@ -132,7 +147,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #68EDC6; }\n\n#songList {\n  text-align: left;\n  border: 2px solid #90BEDE; }\n\n.searching {\n  text-align: center;\n  margin: 10px;\n  padding: 10px; }\n\n#artistName {\n  padding: 10px;\n  border-radius: 15px; }\n\n#artistSearchBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #90BEDE; }\n\n#artistSearchBtn:hover {\n  background-color: #E5E1EE; }\n\n.btn:focus {\n  background-color: #90BEDE;\n  color: #E5E1EE; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #DFFDFF; }\n\nh1 {\n  color: #90BEDE; }\n\nh2 {\n  color: #68EDC6; }\n\n.main {\n  display: flex;\n  justify-content: space-around; }\n\n#songList {\n  text-align: left;\n  border: 2px solid #90BEDE;\n  width: 30%;\n  padding-left: 10px; }\n\n#favoritesList {\n  text-align: left;\n  border: 2px solid #90BEDE;\n  width: 30%;\n  padding-left: 10px; }\n\n.searching {\n  text-align: center;\n  margin: 10px;\n  padding: 10px; }\n\n#artistName {\n  padding: 10px;\n  border-radius: 15px; }\n\n#artistSearchBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #90BEDE; }\n\n#artistSearchBtn:hover {\n  background-color: #E5E1EE; }\n\n.btn:focus {\n  background-color: #90BEDE;\n  color: #E5E1EE; }\n", ""]);
 
 	// exports
 
