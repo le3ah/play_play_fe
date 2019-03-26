@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Ill Vibe</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="shortcut icon" type="image/x-icon" href="public/images/favicon.ico">
 </head>
 <body>
@@ -13,16 +14,15 @@
   <script src="main.bundle.js"></script>
   <h1>Search for songs by artist name, select your favorites, and build some rockin' playlists here!</h1>
   <form class="searching">
-    <input type="text" placeholder="Enter Artist Name Here" id="artistName">
+    <input type="text" placeholder="Rockin' Artist Name" id="artistName">
     <input type="submit" value="Search" id="artistSearchBtn">
   </form>
   <div class="main">
+    <div id="playlistsList">
+    </div>
     <div id="songList">
-      <h2>Search Results</h2>
     </div>
     <div id="favoritesList">
-      <h2>Favorite Songs</h2>
-
     </div>
   </div>
 </body>

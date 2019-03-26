@@ -7,6 +7,11 @@ h1 {
 h2 {
   color: #68EDC6;
 }
+// .fas {
+//   padding: 10px;
+//   border-radius: 20px;
+//   font-size: 20px;
+// }
 .main {
   display: flex;
   justify-content: space-around;
@@ -16,13 +21,22 @@ h2 {
   text-align: left;
   border: 2px solid #90BEDE;
   width: 30%;
-  padding-left: 10px;
+  padding-left: 20px;
+  font-size: 25px;
 }
 #favoritesList {
   text-align: left;
   border: 2px solid #90BEDE;
   width: 30%;
-  padding-left: 10px;
+  padding-left: 20px;
+  font-size: 25px;
+}
+#playlistsList {
+  text-align: left;
+  border: 2px solid #90BEDE;
+  width: 30%;
+  padding-left: 20px;
+  font-size: 25px;
 }
 .searching {
   text-align: center;
@@ -32,14 +46,21 @@ h2 {
 #artistName {
   padding: 10px;
   border-radius: 15px;
+  font-size: 20px;
 }
 #artistSearchBtn {
   padding: 10px;
   border-radius: 15px;
   background-color: #90BEDE;
+  font-size: 20px;
 }
 #artistSearchBtn:hover {
   background-color: #E5E1EE;
+}
+.btn {
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
 }
 .btn:focus {
   background-color: #90BEDE;
