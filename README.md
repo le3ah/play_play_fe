@@ -1,65 +1,35 @@
 # Play Play FE
-A Turing School pair project.
 
-[PlayPlay](https://protected-fortress-76604.herokuapp.com)
-![homepage](/.readme/home.jpg)
+A Turing School pair project in our last module at the Turing School of Software & Design.  We were tasked with developing a full-stack application in a language new to us (i.e. - no RoR for the backend).  For the frontend, we used jQuery.  You can visit our backend data at [PlayPlay](https://protected-fortress-76604.herokuapp.com).  Our frontend is deployed through github.io and can be found at [PlayPlayFE](https://le3ah.github.io/play_play_fe/).
 
-Contributors:
-* Leah K Miller
-* Mary Goodhart
+https://le3ah.github.io/play_play_fe/
+![favicon](/.readme/favicon.png)
 
+![main page](/.readme/whole_pic.png)
+
+# Contributors:
+
+* Leah K Miller: https://github.com/le3ah
+* Mary Goodhart: https://github.com/mgoodhart5
 
 # About Play Play FE
 
-Around 98% of all single-trip journeys in the US are 50 miles or less in length. Despite the fact that almost all available EV’s have a range that exceeds 50 miles, many people don’t buy, consider, or use EV’s. We’re here to help change that, and to help current EV owners. Our app will help you find things to do within your EV’s range, and to top it off, we’ll help you find an EV charger near the place you’re going so you can charge up while you’re there. Once you’ve arrived to your destination or back home, you can log your trip on your dashboard, and see how much tailpipe carbon emissions you saved.
-
-![trip log](/.readme/my_trips.jpg)
-
-## Current Known Issues
-
-*
-*
-
-## Learning Goals
-
-*
-*
-*
-
-![PlayPlay](/.readme/first_search.jpg)
-
 ## Getting Started && Prerequisites
 
-*
-*
-*
-
-###### Tests
-
-*
-*
-*
-
 ```
-git clone <github address>
+git clone git@github.com:le3ah/play_play_fe.git
 ```
 
-### Installing
-
-From your terminal, navigate into the Play_Play FE directory:
+From your terminal, navigate into the play_play_fe directory:
 
 ```
 cd play_play_fe
 ```
 
-Establish a database:
+```
+npm install
+```
 
-```
-knex migrate:latest
-```
-```
-knex seed:run
-```
 Start your server:
 
 ```
@@ -68,51 +38,28 @@ npm start
 
 Open your browser (best functionality in Chrome).
 
-`localhost:3000`
+Navigate to `http://localhost:8080/` to run your application.
 
 Welcome to our dev environment!
 
-![PlayPlay](/.readme/ev_chargers.jpg)
+![search artist](/.readme/search_results.png)
 
-## Testing
+![playlist](/.readme/playlistsl_m.png)
 
-Your location should be the root directory of the project (`play_play`).
+## Current Known Issues
 
-From the command line run `mocha --exit`
-(This can take a moment)
+* You cannot add songs to a playlist.
+* You cannot delete playlists.
+* When you delete a song, the page must be refreshed to see the change.
 
-`Green` is passing.
-`Red` is failing.
-
-We used `<whatever>` for testing.
-
-## Examples
-
+![PlayPlay](/.readme/playlist.png)
 
 ## Deployment
 
-Our app is deployed on heroku at: [PlayPlay](https://protected-fortress-76604.herokuapp.com)
+Our front end app is deployed on GitHub Pages at: [PlayPlay](https://le3ah.github.io/play_play_fe/)
 
 ## Tech Stack
 
-## Running the Server Locally
-
-To see your code in action locally, you need to fire up a development server. Use the command:
-
-```
-npm start
-```
-
-Once the server is running, visit in your browser:
-
-* `http://localhost:8080/` to run your application.
-
-
-## GitHub Pages Setup
-
-
-## Built With
-
-* [JavaScript](https://www.javascript.com/)
-* [jQuery](https://jquery.com/)
-* [Express](https://expressjs.com/)
+* Express
+* jQuery
+* GitHub Pages
