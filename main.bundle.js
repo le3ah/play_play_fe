@@ -78,7 +78,6 @@
 	          var songRating = trackList[i].track.track_rating;
 	          $('#favoriteBtn' + i).click(function () {
 	            event.preventDefault();
-
 	            window.alert('You have favorited ' + songTitle + ' by ' + songArtist + '!');
 	            $.ajax({
 	              url: "https://protected-fortress-76604.herokuapp.com/api/v1/favorites",
@@ -91,7 +90,7 @@
 	              }),
 	              contentType: 'application/json'
 	            });
-	            $('#favoritesList').append('<p id="songName' + i + '"><strong>Name: </strong>' + songTitle + '<br><strong>Artist: </strong>' + songArtist + '<br><strong>Genre: </strong>' + songGenre + '<br><strong>Rating: </strong>' + songRating + '</p>');
+	            $('#favoritesList').append('<p id="songName' + i + '"><button class="btn" id="playlistBtn' + i + '"><i class="fas fa-skull-crossbones status" style=\'font-size:30px\'></i></button> <strong>Name: </strong>' + songTitle + '<br><strong>Artist: </strong>' + songArtist + '<br><strong>Genre: </strong>' + songGenre + '<br><strong>Rating: </strong>' + songRating + '</p>');
 	          });
 	        };
 
@@ -110,7 +109,30 @@
 	    for (var i = 0; i < 29; i++) {
 	      $("#favoritesList").show();
 	      if (data[i]) {
-	        $('#favoritesList').append('<p id="songName' + i + '"><strong>Name: </strong>' + data[i].name + '<br><strong>Artist: </strong>' + data[i].artist_name + '<br><strong>Genre: </strong>' + data[i].genre + '<br><strong>Rating: </strong>' + data[i].rating + '</p>');
+	        (function () {
+	          var songId = data[i].id;
+	          var songName = data[i].name;
+	          var songArtistName = data[i].artist_name;
+	          var songGenre = data[i].genre;
+	          var songRating = data[i].rating;
+	          $('#favoritesList').append('<p id="songName' + i + '"><button class="btn" id="destroyBtn' + i + '"><i class="fas fa-skull-crossbones status" style=\'font-size:30px\'></i></button> <strong>Name: </strong>' + data[i].name + '<br><strong>Artist: </strong>' + data[i].artist_name + '<br><strong>Genre: </strong>' + data[i].genre + '<br><strong>Rating: </strong>' + data[i].rating + '</p>');
+	          $('#destroyBtn' + i).click(function () {
+	            $('#songName' + i).hide();
+	            $('#destroyBtn' + i).hide();
+	            event.preventDefault();
+	            window.alert('You have removed ' + songName + ' by ' + songArtistName + '!');
+	            $.ajax({
+	              url: 'https://protected-fortress-76604.herokuapp.com/api/v1/favorites/' + songId,
+	              type: 'delete',
+	              sucess: function sucess(data, status) {
+	                alert('Success: status code ' + status);
+	              },
+	              error: function error(data) {
+	                console.log('Error:', data);
+	              }
+	            });
+	          });
+	        })();
 	      }
 	    }
 	  });
@@ -124,10 +146,13 @@
 	      $("#playlistsList").show();
 	      if (data[i]) {
 	        $('#playlistsList').append('<p id="playlistName' + i + '"><button class="btn" id="playlistBtn' + i + '"><i class="fas fa-guitar status" style=\'font-size:30px\'></i></button> ' + data[i].playlist_name + '</p><p id="songsForPlaylist' + i + '"></p><br>');
+	        $('#playlistBtn' + i).click(function () {
+	          event.preventDefault();
+	          window.alert('The songs in your playlist are already displayed, silly! You\'re welcome! \uD83D\uDE0E');
+	        });
 	        for (var n = -1; n < 29; n++) {
 	          var songs = data[i]["favorite"];
 	          if (songs[n]) {
-	            // $(`#songsForPlaylist${i}`).show();
 	            $('#songsForPlaylist' + i).append('<p id="playlistSong' + n + '"> "' + songs[n]["name"] + '" by ' + songs[n]["artist_name"] + '</p>');
 	          }
 	        }
