@@ -1,40 +1,65 @@
+# Play Play FE
 
-## Running the Server Locally
+A Turing School pair project in our last module at the Turing School of Software & Design.  We were tasked with developing a full-stack application in a language new to us (i.e. - no RoR for the backend).  For the frontend, we used jQuery.  You can visit our backend data at [PlayPlay](https://protected-fortress-76604.herokuapp.com).  Our frontend is deployed through github.io and can be found at [PlayPlayFE](https://le3ah.github.io/play_play_fe/).
 
-To see your code in action locally, you need to fire up a development server. Use the command:
+https://le3ah.github.io/play_play_fe/
+![favicon](/.readme/favicon.png)
 
-```shell
+![main page](/.readme/whole_pic.png)
+
+# Contributors:
+
+* Leah K Miller: https://github.com/le3ah
+* Mary Goodhart: https://github.com/mgoodhart5
+
+# About Play Play FE
+
+## Getting Started && Prerequisites
+
+```
+git clone git@github.com:le3ah/play_play_fe.git
+```
+
+From your terminal, navigate into the play_play_fe directory:
+
+```
+cd play_play_fe
+```
+
+```
+npm install
+```
+
+Start your server:
+
+```
 npm start
 ```
 
-Once the server is running, visit in your browser:
+Open your browser (best functionality in Chrome).
 
-* `http://localhost:8080/` to run your application.
+Navigate to `http://localhost:8080/` to run your application.
 
+Welcome to our dev environment!
 
-## GitHub Pages Setup
+![search artist](/.readme/search_results.png)
 
-This site will be served from GitHub Pages in production.
+![playlist](/.readme/playlistsl_m.png)
 
-In order to see your application running on production:
+## Current Known Issues
 
-1. From the command line, run `npm run build`.
+* You cannot add songs to a playlist.
+* You cannot delete playlists.
+* When you delete a song, the page must be refreshed to see the change.
 
-2. Commit and push your application to GitHub.
+![PlayPlay](/.readme/playlist.png)
 
-3. Visit your repository on Github
+## Deployment
 
-4. Go to Settings
+Our front end app is deployed on GitHub Pages at: [PlayPlay](https://le3ah.github.io/play_play_fe/)
 
-5. Under the Github Pages section of Options, select 'master' as your source and click `Save`
+## Tech Stack
 
-Be sure to `npm run build` and commit before each push to master. A few seconds after you push up, you should be able to see your application at <https://your-github-username.github.io/project-name>.
-
-
-## Built With
-
-* [JavaScript](https://www.javascript.com/)
-* [jQuery](https://jquery.com/)
-* [Express](https://expressjs.com/)
-* [Mocha](https://mochajs.org/)
-* [Chai](https://chaijs.com/)
+* Express
+* jQuery
+* GitHub Pages
